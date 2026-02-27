@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F8FAFC;
+  --foreground: #0F172A;
+  --surface: #FFFFFF;
+  --border: #E2E8F0;
+  --text-secondary: #64748B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark mode was not explicitly detailed, but required by PRD toggle. I will use standard inversions. */
+    --background: #0F172A;
+    --foreground: #F8FAFC;
+    --surface: #1E293B;
+    --border: #334155;
+    --text-secondary: #94A3B8;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-text-secondary: var(--text-secondary);
+
+  --color-opti-blue: #1E3A8A;
+  --color-opti-light-blue: #3B82F6;
+  --color-opti-success: #10B981;
+  --color-opti-warning: #EF4444;
+  --color-opti-insight: #8B5CF6;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
