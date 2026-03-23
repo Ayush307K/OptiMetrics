@@ -3,8 +3,10 @@ import dotenv from 'dotenv';
 dotenv.config({ path: '.env.local' });
 
 const { Pool } = pg;
+const connectionString = process.env.POSTGRES_URL || process.env.DATABASE_URL;
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString,
+  ssl: connectionString?.includes('localhost') ? false : { rejectUnauthorized: false }
 });
 
 const devices = ['mobile', 'desktop', 'tablet'];
