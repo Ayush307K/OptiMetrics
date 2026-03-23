@@ -1,7 +1,5 @@
 # OptiMetrics 🚀
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FAyush307K%2FOptiMetrics)
-
 OptiMetrics is a powerful, full-stack Ad Performance Analytics platform tailored for Product Analysts and Ad Operations Teams. It processes massive volumes of ad metrics—including CTR, CPC, Revenue, and Impressions—and features an automated **Insights Engine** to detect anomalies, ad fatigue, and top-performing campaigns.
 
 ---
@@ -78,50 +76,52 @@ There are two ways to bring your own data into OptiMetrics:
 
 ## ⚙️ Installation & Local Setup
 
-Want to run OptiMetrics on your local machine? Follow these steps:
+OptiMetrics is designed to be easily run on any local environment. Follow these exact steps to get the platform running locally on your machine.
 
-### Prerequisites:
-- **Node.js**: v20.9.0 or higher
-- **PostgreSQL**: A running instance (either locally or via Docker)
+### Requirements & Prerequisites:
+Before installing, please ensure you have the following installed on your system:
+- **Node.js**: Version 20.9.0 or higher is required to support the Next.js 15 runtime and Tailwind CSS v4 backend.
+- **npm**: Comes with Node.js.
+- **Git**: To clone the repository.
+- **PostgreSQL**: A running instance of a PostgreSQL database. You can install Postgres locally (e.g. via Homebrew or Windows installer) or run it using Docker.
 
 ### 1. Clone the Repository
+Begin by cloning the source code to your machine:
 ```bash
 git clone https://github.com/Ayush307K/OptiMetrics.git
 cd OptiMetrics
 ```
 
-### 2. Install Dependencies
+### 2. Install Project Dependencies
+Use npm to install all required Node packages:
 ```bash
 npm install
 ```
 
 ### 3. Setup the Database Connection
-Create a `.env.local` file at the root of the project and add your Postgres connection string:
+OptiMetrics needs to connect to your PostgreSQL database.
+First, ensure you have created an empty database (for example, named `optimetrics`) inside PostgreSQL.
+Then, create a `.env.local` file at the root of the project directory and add your Postgres connection string:
 ```bash
-# Example for a local PostgreSQL database
+# Example syntax: postgres://[user]:[password]@localhost:5432/[database_name]
 DATABASE_URL=postgres://user:password@localhost:5432/optimetrics
 ```
 
-### 4. Seed the Database
-Populate your database with the required schema and 100,000 rows of test data:
+### 4. Create Schema and Seed the Database
+OptiMetrics comes with a robust seeding script that automatically constructs the PostgreSQL tables and pushes 100,000 realistic rows of mock ad tracking data so you can test the dashboard right away.
 ```bash
 node scripts/seed.mjs
 ```
+*(Wait until you see "Seeding completed successfully!")*
 
-### 5. Start the Development Server
+### 5. Start the Local Server
+Boot up the Next.js development server:
 ```bash
 npm run dev
 ```
-Navigate to `http://localhost:3000` in your browser.
 
----
+### 6. Access the Dashboard
+Navigate your web browser to:
+[http://localhost:3000](http://localhost:3000)
 
-## 🌐 Deploy to Vercel
-
-If you want to watch the deployment on Vercel and host it live:
-
-1. **Push to GitHub**: Ensure this code is pushed to your GitHub repository.
-2. **Import Project**: Go to [Vercel](https://vercel.com/new) and import your new `OptiMetrics` repository.
-3. **Configure Database**: You will need a hosted PostgreSQL database (such as Supabase, Neon, or Vercel Postgres). 
-4. **Environment Variables**: In the Vercel deployment settings, add the `DATABASE_URL` variable pointing to your hosted database.
-5. **Deploy**: Click "Deploy". Vercel will automatically build the Next.js application and provide you with a live URL!
+Congratulations! You should now see the OptiMetrics UI rendering the 100k generated test rows on your local machine.
